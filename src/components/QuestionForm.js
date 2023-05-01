@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
-function QuestionForm(props) {
+function QuestionForm({ addQuestion }) {
   const [formData, setFormData] = useState({
-    prompt: "",
+    prompt: "What special prop should always be included for lists of elements?",
     answer1: "",
     answer2: "",
     answer3: "",
@@ -20,6 +20,18 @@ function QuestionForm(props) {
   function handleSubmit(event) {
     event.preventDefault();
     console.log(formData);
+    const structuredFormData = {
+      "prompt": formData.prompt,
+      "answers": [
+        formData.answer1,
+        formData.answer2,
+        formData.answer3,
+        formData.answer4,
+      ],
+      "correctIndex": formData.correctIndex
+    }
+
+    addQuestion(structuredFormData);
   }
 
   return (
